@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
+
+using Random = UnityEngine.Random;
 
 namespace simple_math_3_game
 {
@@ -26,6 +29,9 @@ namespace simple_math_3_game
             }
         }
 
+        private float currentTime;
+        private const float initTime = 60.0f;
+
         Cell[,] cells;
 
         public static int minSequence;
@@ -48,12 +54,38 @@ namespace simple_math_3_game
         [SerializeField] Sprite[] icons;
         [SerializeField] Scores scores;
 
+        [Space(10)]
+        [SerializeField] Text timerText;
+
+        public static Action OnGameFinsihed { get; set; } = delegate { };
+
+        private void Update()
+        {
+            if(FindObjectOfType<Popup>())
+            {
+                return;
+            }
+
+            currentTime -= Time.deltaTime;
+            if(currentTime <= 0)
+            {
+                currentTime = 0;
+                timerText.text = $"{0}";
+
+                OnGameFinsihed?.Invoke();
+            }
+
+            timerText.text = $"{Mathf.FloorToInt(currentTime % 60)}";
+        }
+
         public void Start_Game()
         {
             Clear_Board();
 
             scores.ResetScores();
             Create_Board();
+
+            currentTime = initTime;
         }
 
         public void SetDifficult(int i)
@@ -197,7 +229,7 @@ namespace simple_math_3_game
             }
         }
 
-        [System.Serializable]
+        [Serializable]
         public class Scores
         {
             int score;
