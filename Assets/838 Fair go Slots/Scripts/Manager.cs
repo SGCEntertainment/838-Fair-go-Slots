@@ -162,7 +162,6 @@ namespace simple_math_3_game
 
             for (int i = 0; i < renders.Count; i++)
             {
-                scores.Score += 1;
                 yield return new WaitForSeconds(shiftDelay);
 
                 for (int k = 0; k < renders.Count; k++)
@@ -171,6 +170,7 @@ namespace simple_math_3_game
                 }
             }
 
+            scores.Score += 1;
             isShifting = false;
         }
 
@@ -211,8 +211,7 @@ namespace simple_math_3_game
 
                 set
                 {
-                    score = value;
-                    scoresText.text = score.ToString();
+                    scoresText.text = string.Format("SCORE\n{0:000000}", score = value);
                 }
             }
 
