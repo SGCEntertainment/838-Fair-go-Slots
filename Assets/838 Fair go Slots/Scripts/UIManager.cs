@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] GameObject game;
     [SerializeField] Text scoresText;
     private void Awake()
     {
@@ -15,11 +16,18 @@ public class UIManager : MonoBehaviour
                 Manager.Instance.Start_Game();
             });
         };
-    }
 
-    private void Start()
-    {
-        Manager.Instance.SetDifficult(0);
-        Manager.Instance.Start_Game();
+        LoadingGO.OnLoadingStarted += () =>
+        {
+            game.SetActive(false);
+        };
+
+        LoadingGO.OnLoadingFinished += () =>
+        {
+            game.SetActive(true);
+
+            Manager.Instance.SetDifficult(0);
+            Manager.Instance.Start_Game();
+        };
     }
 }

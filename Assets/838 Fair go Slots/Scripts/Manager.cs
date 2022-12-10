@@ -30,7 +30,7 @@ namespace simple_math_3_game
         }
 
         private float currentTime;
-        private const float initTime = 60.0f;
+        private const float initTime = 60;
 
         Cell[,] cells;
 
@@ -59,9 +59,14 @@ namespace simple_math_3_game
 
         public static Action OnGameFinsihed { get; set; } = delegate { };
 
+        public bool NotInteract
+        {
+            get => FindObjectOfType<Popup>() || FindObjectOfType<LoadingGO>();
+        }
+
         private void Update()
         {
-            if(FindObjectOfType<Popup>())
+            if(NotInteract)
             {
                 return;
             }

@@ -165,6 +165,11 @@ namespace simple_math_3_game
 
         void Select()
         {
+            if(Manager.Instance.NotInteract)
+            {
+                return;
+            }
+
             isSelected = true;
 
             outline.SetActive(true);
