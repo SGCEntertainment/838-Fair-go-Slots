@@ -856,7 +856,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c1cafe8ae2e59924c8f24c231a0b2995, type: 3}
   - {fileID: 21300000, guid: b84236da35b3b89458b6a16ca58919aa, type: 3}
   scores:
-    scoresText: {fileID: 259171898}
+    scoresText: {fileID: 1929133780}
 --- !u!1 &1572338811
 GameObject:
   m_ObjectHideFlags: 0

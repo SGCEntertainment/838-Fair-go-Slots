@@ -211,7 +211,7 @@ namespace simple_math_3_game
 
                 set
                 {
-                    scoresText.text = string.Format("SCORE\n{0:000000}", score = value);
+                    scoresText.text = string.Format("<color=#F6E124>SCORE</color>\n{0:000000}", score = value);
                 }
             }
 
